@@ -10,7 +10,7 @@ from solution import solution
 import time
 
 
-def HHOMGROM(objf, lb, ub, dim, SearchAgents_no, Max_iter):
+def HHOMGROM(objf, lb, ub, dim, SearchAgents_no, Max_iter,trainInput,trainOutput,net):
 
     # dim=30
     # SearchAgents_no=50
@@ -62,9 +62,9 @@ def HHOMGROM(objf, lb, ub, dim, SearchAgents_no, Max_iter):
             X[i, :] = numpy.clip(X[i, :], lb, ub)
             
             Xavg_pos = X.mean(0)
-            Xavg_score = objf(Xavg_pos)
+            Xavg_score = objf(Xavg_pos,trainInput,trainOutput,net)
             # fitness of locations
-            fitness = objf(X[i, :])
+            fitness = objf(X[i, :],trainInput,trainOutput,net)
 
 
             # Update the location of Rabbit
@@ -164,9 +164,9 @@ def HHOMGROM(objf, lb, ub, dim, SearchAgents_no, Max_iter):
                     # Update the Position of search agents
                 a = numpy.random.rand()
                 if a>=0.5:
-                    Xnew = X[i,:] + (1/2)*numpy.random.rand()*(Rabbit_Location-Xw_pos) # eq 5 in the paper
+                    Xnew = X[i,:] + (1/phi)*numpy.random.rand()*(Rabbit_Location-Xw_pos) # eq 5 in the paper
                 if a<=0.5:
-                    Xnew = (X[i,:]-Rabbit_Location)+ (1/2)*numpy.random.rand()*(X.mean(0)-Xw_pos) 
+                    Xnew = (X[i,:]-Rabbit_Location)+ (1/phi)*numpy.random.rand()*(X.mean(0)-Xw_pos) 
                 if objf(Xnew) < objf(X[i, :]):
                     X[i, :] = Xnew.copy() 
 
