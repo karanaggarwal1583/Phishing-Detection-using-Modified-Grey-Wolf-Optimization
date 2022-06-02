@@ -22,7 +22,9 @@ import optimizers.SCA as sca
 import optimizers.JAYA as jaya
 import optimizers.DE as de
 import optimizers.HHOMGROM as hhomgrom
+import optimizers.MROM as mrom
 import optimizers.BBO as bbo
+import optimizers.GROM as grom
 import csv
 import numpy
 import time
@@ -150,6 +152,10 @@ def selector(algo, func_details, dim, popSize, Iter, trainInput,trainOutput,net)
         x=de.DE(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
     elif(algo=="HHOMGROM"):
         x=hhomgrom.HHOMGROM(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    elif(algo=="MROM"):
+        x=mrom.MROM(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
+    elif(algo=="GROM") :
+        x=grom.GROM(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
     elif(algo=="BBO"):
         x=bbo.BBO(getattr(costNN, function_name),lb,ub,dim,popSize,Iter,trainInput,trainOutput,net)
     else:
