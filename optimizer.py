@@ -34,7 +34,7 @@ import evaluateNetClassifier as evalNet
 import solution
 from sklearn.model_selection import train_test_split
 
-def run(optimizer, datasets, NumOfRuns, params):
+def run(optimizer, datasets, NumOfRuns, params,k):
 
     #Export results ?
     Export=True
@@ -68,7 +68,7 @@ def run(optimizer, datasets, NumOfRuns, params):
                 X = numpy.array(dataset_values)[:,:-1]
                 y = numpy.array(dataset_values)[:,-1]
 
-                trainInput, testInput, trainOutput, testOutput = train_test_split(X, y, test_size=0.33, random_state=42)
+                trainInput, testInput, trainOutput, testOutput = train_test_split(X, y, test_size=1/k, random_state=42)
                 
                 numFeatures=numpy.shape(trainInput)[1]#number of features in the train dataset
 
