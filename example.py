@@ -2,7 +2,7 @@ import optimizer as opt
 
 # Select optimizers
 # "SSA","PSO","GA","BAT","FFA","GWO","WOA","MVO","MFO","CS","HHO","SCA","JAYA","DE"
-optimizer=["PSO", "MVO", "GWO"]
+optimizer=["MGWOO","MGWO", "GWO"]
 k = 10
 #datasets=["flame","glass","iris","wdbc","Vertebral2"]
 datasets=["flame","glass"]
